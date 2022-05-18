@@ -13,7 +13,8 @@
     "cors": "^2.8.5",
     "express": "^4.16.4",
     "jshint": "^2.13.4",
-    "npm": "^8.10.0"
+    "npm": "^8.10.0",
+    "socket.io": "^4.5.0"
   },
   "devDependencies": {
     "@types/cors": "^2.8.12",
