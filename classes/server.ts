@@ -2,6 +2,8 @@ import express from 'express'
 import { SERVER_PORT } from '../global/enviroment';
 import socketIO from 'socket.io';
 import http from 'http';
+import { configurarUsuario } from '../sokects/sokect';
+
 
 import * as Socket from'../sokects/sokect';
 
@@ -12,6 +14,7 @@ export default class Server{
     public io:socketIO.Server;
     private httpServer:http.Server;
     private static _instance:Server;
+
 
     private  constructor(){
     
@@ -37,13 +40,19 @@ export default class Server{
     
         console.log('Escuchando conecxiones -sokests');
         this.io.on('connection',cliente =>{
-            
-            console.log('nuevo cliente conectado');
+          
+            Socket.conectarCliente(cliente);
+        //conectar cliente 
+        
             
             Socket.desconectar(cliente);
 
             //mensajes
             Socket.mensaje(cliente, this.io);
+
+            //configurar usuario
+            Socket.configurarUsuario(cliente, this.io);
+
         });
     }
 
@@ -51,4 +60,6 @@ export default class Server{
 
         this.httpServer.listen(this.port, callback);
     }
+
 }
+
