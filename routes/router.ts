@@ -1,5 +1,6 @@
 import { Router,Request, Response } from "express";
 import Server from '../classes/server';
+import { usuariosConectados } from '../sokects/sokect';
 
  const  router = Router();
 
@@ -61,5 +62,19 @@ router.post('/mensajes/:id',(req:Request,res:Response)=>{
    });
    
 
+   //obtener usuarios por nombres
+
+   router.get('/usuarios/detalle',(req:Request,res:Response)=>{
+
+        
+       
+
+       res.json({
+              ok:true,
+              clientes:usuariosConectados.getLista()
+       });
+
+
+   });
 
 export default router;
